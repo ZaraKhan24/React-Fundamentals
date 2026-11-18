@@ -1,11 +1,17 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
   // Counter states
   const [count, setCount] = useState(0);
   const [totalClicks, setTotalClicks] = useState(0);
+  const [renderMessage, setRenderMessage] = useState('');
+
+  // useEffect with dependency array: runs whenever count or totalClicks changes
+  useEffect(() => {
+    setRenderMessage('Component ReRendered');
+  }, [count, totalClicks]);
 
   // Counter functions
   const increment = (value = 1) => {
@@ -278,6 +284,10 @@ function App() {
           <p className="counter-note">
             Built with React useState Hook
           </p>
+
+          <h3 style={{ textAlign: 'center', marginTop: '12px' }}>
+            {renderMessage}
+          </h3>
 
         </section>
 
