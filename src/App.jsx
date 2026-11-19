@@ -6,28 +6,48 @@ function App() {
   // Counter states
   const [count, setCount] = useState(0);
   const [totalClicks, setTotalClicks] = useState(0);
-  const [renderMessage, setRenderMessage] = useState('');
+
+  // useEffect notification states
+  const [showMessage, setShowMessage] = useState(false);
+  const [actionVersion, setActionVersion] = useState(0);
 
   // useEffect Hook with dependency array
   useEffect(() => {
+    // Do not show message on initial page load
+    if (actionVersion === 0) return;
+
     console.log('Component ReRendered');
-    setRenderMessage('Component ReRendered');
-  }, [count, totalClicks]);
+
+    // Show notification
+    setShowMessage(true);
+
+    // Hide notification after 5 seconds
+    const timer = setTimeout(() => {
+      setShowMessage(false);
+    }, 5000);
+
+    // Clear previous timer
+    return () => clearTimeout(timer);
+
+  }, [count, totalClicks, actionVersion]);
 
   // Counter functions
   const increment = (value = 1) => {
     setCount((prev) => Math.min(prev + value, 100));
     setTotalClicks((prev) => prev + 1);
+    setActionVersion((prev) => prev + 1);
   };
 
   const decrement = () => {
     setCount((prev) => Math.max(prev - 1, 0));
     setTotalClicks((prev) => prev + 1);
+    setActionVersion((prev) => prev + 1);
   };
 
   const reset = () => {
     setCount(0);
     setTotalClicks(0);
+    setActionVersion((prev) => prev + 1);
   };
 
   return (
@@ -302,10 +322,12 @@ function App() {
             Built with React useState Hook
           </p>
 
-          {/* useEffect Message */}
-          <h3 className="render-message">
-            {renderMessage}
-          </h3>
+          {/* useEffect Notification */}
+          {showMessage && (
+            <h3 className="render-message">
+              Component ReRendered
+            </h3>
+          )}
 
         </section>
 
