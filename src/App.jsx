@@ -8,8 +8,9 @@ function App() {
   const [totalClicks, setTotalClicks] = useState(0);
   const [renderMessage, setRenderMessage] = useState('');
 
-  // useEffect with dependency array: runs whenever count or totalClicks changes
+  // useEffect Hook with dependency array
   useEffect(() => {
+    console.log('Component ReRendered');
     setRenderMessage('Component ReRendered');
   }, [count, totalClicks]);
 
@@ -53,9 +54,11 @@ function App() {
       <section className="welcome-section" id="home">
         <div>
           <span className="eyebrow">MY PERSONAL DASHBOARD</span>
+
           <h1>
             Hello, <span>Welcome!</span>
           </h1>
+
           <p>
             Exploring React, building skills and learning
             something new every day.
@@ -117,13 +120,13 @@ function App() {
 
                 <div>
                   <h4>Bachelor of Computer Science</h4>
-                  <p>Graduate Student</p>
+                  <p>Undergraduate Student</p>
                   <span>Computer Science</span>
                 </div>
               </div>
             </div>
 
-            {/* Skills */}
+            {/* Technical Skills */}
             <div className="profile-section">
               <h3>
                 <span className="section-icon">✧</span>
@@ -140,6 +143,7 @@ function App() {
               </div>
             </div>
 
+            {/* Profile Footer */}
             <div className="profile-footer">
               <span className="online-dot"></span>
               Currently learning React.js
@@ -153,9 +157,15 @@ function App() {
 
           <div className="counter-top">
             <div>
-              <span className="eyebrow">INTERACTIVE PROJECT</span>
+              <span className="eyebrow">
+                INTERACTIVE PROJECT
+              </span>
+
               <h2>Counter Studio</h2>
-              <p>Manage your numbers with React useState.</p>
+
+              <p>
+                Manage your numbers with React useState.
+              </p>
             </div>
 
             <div className="counter-symbol">01</div>
@@ -226,9 +236,13 @@ function App() {
 
           {/* Quick Actions */}
           <div className="quick-actions">
-            <span className="quick-label">QUICK ADD</span>
+
+            <span className="quick-label">
+              QUICK ADD
+            </span>
 
             <div className="quick-buttons">
+
               <button
                 onClick={() => increment(1)}
                 disabled={count === 100}
@@ -249,6 +263,7 @@ function App() {
               >
                 +10
               </button>
+
             </div>
           </div>
 
@@ -257,6 +272,7 @@ function App() {
 
             <div className="stat-card">
               <span className="stat-icon">↗</span>
+
               <div>
                 <strong>{totalClicks}</strong>
                 <p>Total Actions</p>
@@ -265,6 +281,7 @@ function App() {
 
             <div className="stat-card">
               <span className="stat-icon">◎</span>
+
               <div>
                 <strong>{100 - count}</strong>
                 <p>Remaining</p>
@@ -273,7 +290,7 @@ function App() {
 
           </div>
 
-          {/* Reset */}
+          {/* Reset Button */}
           <button
             className="reset-btn"
             onClick={reset}
@@ -285,7 +302,8 @@ function App() {
             Built with React useState Hook
           </p>
 
-          <h3 style={{ textAlign: 'center', marginTop: '12px' }}>
+          {/* useEffect Message */}
+          <h3 className="render-message">
             {renderMessage}
           </h3>
 
