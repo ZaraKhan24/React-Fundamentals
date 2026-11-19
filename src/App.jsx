@@ -24,7 +24,7 @@ function App() {
     // Hide notification after 5 seconds
     const timer = setTimeout(() => {
       setShowMessage(false);
-    }, 5000);
+    }, 3000);
 
     // Clear previous timer
     return () => clearTimeout(timer);
